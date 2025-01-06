@@ -33,3 +33,23 @@
     padding: $pt 0 $pb;
     background-color: $bg;
 }
+
+//yiq na wikipedi i tamo nam pisu ove brojke sa kojima mnozimos
+@function colorYiq($color){
+    $r: red($color);
+    $g: green($color);
+    $b: blue($color);
+    
+    $yiq: ($r*0.299) + $g*0.587 + ($b*0.114); 
+    //zagrade nisu obavezne, stavljene su radi vezbe
+    
+    //preko uslovnih iskaza ispitujemo da li je ovaj iskaz veci ili ne (tamniji ili svetliji)
+    //$yiq > 129 u ovom slucaju to je svetla pozatina (yiq vece od 129); @return(vrati neka $black tamna slova)
+    //optimalno je da se yiq deinise od 125 do 129;
+    @if($yiq > 129){
+       @return  $black; //moze da bude i $btn-dark-color
+    }@else{
+       @return $white; //$btn-default-color
+    }
+    
+}

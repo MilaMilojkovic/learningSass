@@ -7,26 +7,29 @@ $tbody-even-bg: $white;
 $tbody-hover-bg: darken($light-gray, 15%);
 
 .course-section{
-   @include styleSection(30px, 30px, transparent);
-    
+    @include styleSection(30px, 30px, transparent);
+
     table{
         border: $table-border;
         border-collapse: collapse;
         width: 100%;
-        
+
         caption{
-          text-align: left;
-          font-style: italic;
+            text-align: left;
+            font-style: italic;
         }
-        
+
         th, td{
             border: $table-border;
             padding: 10px 5px;
         }
         thead{
             background: $table-head-bg;
+                        //lighten($table-head-bg, 50%); radi vezbe
             th{
-                color:$thead-color;
+                //color:$thead-color;
+                color:colorYiq($table-head-bg); 
+                    //colorYiq(lighten($table-head-bg, 50%)); radi vezbe
                 border: $thead-border-color;
             }
         }//thead end
@@ -35,7 +38,7 @@ $tbody-hover-bg: darken($light-gray, 15%);
                 &:nth-of-type(even){
                     background-color: $tbody-even-bg;
                 }
-                
+
                 &:hover{
                     background-color: $tbody-hover-bg; 
                 }
