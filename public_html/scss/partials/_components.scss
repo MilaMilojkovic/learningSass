@@ -1,4 +1,4 @@
-$btn-default: $dark-gray;
+/*$btn-default: $dark-gray;
 $btn-default-color: $white;
 $btn-dark-color: $black;
 
@@ -6,7 +6,23 @@ $btn-danger: $red;
 $btn-success: $green;
 $btn-warning: $orange;
 $btn-info: $cyan;
-$btn-dark: $black;
+$btn-dark: $black;*/
+
+//asociativni nizovi ispod u string; procitaj vise o njima
+$btn-colection: (
+
+'default' : $dark-gray,
+'danger'  : $red,
+'success' : $green,
+'warning' : $orange,
+'info'    : $cyan,
+'dark'    : lighten($black, 10%),
+'fancy'   : $purple
+//koliko sam razumela, svaki key koji cuva vrednost je vezan za jedno sferu, dakle u btn-colection imamo 5 buttona, i default dobija vrednost prvog kljuca, drugi ima vrednost danger i dobija vrednost tog kljuca.. ovo je mozda jos po dubini pa bih mogla o tome da procitam detaljnije. 
+//daje im se klasa u html kodu pod nazivom koji je sacuvan u key stringu;
+);
+
+//u okviru ovog niza vrednosti su mapirane i sacuvani su pod nekim kljucem tj. 'default', 'danger'...
 
 %btn{
     display: inline-block;
@@ -20,6 +36,21 @@ $btn-dark: $black;
     cursor: pointer;
 }
 
+
+@each $key, $value in $btn-colection{
+    .btn-#{$key}{
+      @extend %btn;  
+      background-color: $value;
+      color: colorYiq($value);
+      
+      &:hover{
+          background-color: darken($value, 10%);
+      }
+    }
+}
+//boju cuvamo kao value;
+//.btn-#{$key} -key su default, danger, warning itd.. pise se sa tarabom ispred, objasnjnje: varijable mozemo da upisemo jedino u okviru uglastih zagrada, pa ako ne stavimo # ispred smatra ce se da smo mi poceli da pisemo property za klasu .btn-; tako da smo obezbedili da nam se ne smatra kao property za ovaj button vec je placeholder da pomocu njega mozemo da ispisemo neku varijablu!!! UPAMTI! BITNO!
+/*
 .btn-default{
     @extend %btn; //button default sa @extend nasledi sve sto je napisano u .btn i u html pisemo samo .btn-default ili drugi neki naziv
     //%btn invisible class -pretvra ovu klasu u nevidljivu i tako je u @extend koristi da ostane nevidljiva u css koji se kompajlira. Umesto . stavimo % znak.
@@ -79,4 +110,4 @@ $btn-dark: $black;
     &:hover{
          background-color: darken($btn-dark, 10%); 
      }
-}
+} */
