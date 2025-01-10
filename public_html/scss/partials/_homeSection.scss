@@ -3,4 +3,13 @@ $home-bg: $white;
 
 .home-section{
     @include styleSection(150px, 150px, $home-bg);
+    //background-image:  url(../img/home.png);
+    background-image: url(assets/home.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
 }
+
+//sta je bitno kod ucitavanja pravilne putanje u sass-u kao background-image sekcije: Nas kod pisemo u okviru sass fajlova, medjutim na web stranu ucitavama theme.css i kada definisemo putanje, njih definisemo u odnosu na ovaj theme.css jer taj fajl ucitavamo na nasu stranu. A NIKAKO ne ucitavamo putanje u kojima se trenutno nalazimo tj. u ovom slucaju home-section! 
+//url(../img/home.png); - ../ izadjemo jedan korak iz theme.css i onda smo pozicionirani u css folder; img udjemo u img folder ; / trazimo po dubini dalje ; home.png naziv nase slike!
+//neka osnova je da u okviru css foldera napravimo novi folder koji imenjujemo assets i u njemu prebacimo sliku koja treba da nam sluzi kao pozadina i onda je putanja u odnosu na theme.css ova: url(assets/home.png); 
